@@ -1,12 +1,11 @@
 import React, {useMemo} from 'react';
 import {Formik} from 'formik';
 import {ProductModel} from '../../types/api-models';
-import {Button, Col, Row} from 'react-bootstrap';
+import {Alert, Button, Col, Row} from 'react-bootstrap';
 import * as yup from 'yup';
-import QuantitySelector from './QuantitySelector';
-import Loading from '../layout/Loading';
 import {FaTrash} from 'react-icons/fa';
-import Icons from "../../libs/icons";
+import useDisappearingValue from "../local-disappearing-feedback/useDisappearingValue";
+import WishListRowForm from "./WishListRowForm";
 
 interface WishListRowProps {
     product: ProductModel
@@ -14,8 +13,8 @@ interface WishListRowProps {
     setQuantity: (qty: number) => void
 }
 
-
 function WishListRow({ product, initQty, setQuantity }: WishListRowProps) {
+    const { value: feedback, setValue: setFeedback } = useDisappearingValue();
 
     const initValues = useMemo(() => {
         return { qty: `${initQty}` };
@@ -32,37 +31,26 @@ function WishListRow({ product, initQty, setQuantity }: WishListRowProps) {
                 </div>
             </Col>
             <Col>
-                <Formik
-                    initialValues={initValues}
-                    onSubmit={(values, { setSubmitting }) => {
-                        setQuantity(parseInt(values.qty, 10));
-                        setSubmitting(false);
-                    }}
-                    validationSchema={yup.object({
-                        qty: yup.number()
-                            .typeError('Must be a number')
-                            .min(1, 'Must be larger than 1')
-                            .required('Required'),
-                    })}
-                    enableReinitialize
-                >
-                    {({ handleSubmit, values, isSubmitting }) => {
-                        const currentQty = values.qty;
-
-                        return (
-                            <form onSubmit={handleSubmit} className="d-flex justify-content-start align-items-start gap-2">
-                                <div>
-                                    <QuantitySelector name="qty" />
-                                </div>
-                                {currentQty !== initValues.qty && (
-                                    <Button type="submit" variant="success" disabled={isSubmitting}>
-                                        {isSubmitting ? <Loading /> : <Icons.Save size={20} />}
-                                    </Button>
-                                )}
-                            </form>
-                        )
-                    }}
-                </Formik>
+                <div className="d-flex align-items-start gap-2">
+                    <Formik
+                        initialValues={initValues}
+                        onSubmit={(values, { setSubmitting }) => {
+                            setQuantity(parseInt(values.qty, 10));
+                            setSubmitting(false);
+                            setFeedback('Saved!');
+                        }}
+                        validationSchema={yup.object({
+                            qty: yup.number()
+                                .typeError('Must be a number')
+                                .min(1, 'Must be larger than 1')
+                                .required('Required'),
+                        })}
+                        enableReinitialize
+                    >
+                        {WishListRowForm}
+                    </Formik>
+                    {feedback && <Alert variant="success" className="py-2">{feedback}</Alert>}
+                </div>
             </Col>
         </Row>
     );

@@ -6,11 +6,11 @@ import WindowSidePanel from "./window-side-panel/WindowSidePanel";
 import WishList from "../wish-list/WishList";
 import Icons from "../../libs/icons";
 import {useAuthContext} from "../../contexts/AuthContext";
+import WishListMenuIndicator from "../wish-list/WishListMenuIndicator";
 
 const navBarId = 'basic-navbar-nav';
 
 function MainBar() {
-    const { numberOfProducts } = useWishListContext();
     const { isOpen, toggle } = useWindowSidePanel()
     const { user } = useAuthContext();
 
@@ -24,14 +24,7 @@ function MainBar() {
                 <Navbar.Collapse id={navBarId} >
                     <Nav className="ms-auto align-items-center">
                         <Nav.Link onClick={toggle}>
-                            {numberOfProducts
-                                ? (
-                                    <>
-                                        <Icons.FilledWishList size={30} />
-                                        <Badge>{numberOfProducts}</Badge>
-                                    </>
-                                )
-                                : <Icons.EmptyWishList size={30} /> }
+                            <WishListMenuIndicator />
                         </Nav.Link>
                         <Nav.Item>
                             {user ? user.name : <a onClick={() => alert('Not made for this test')}>Log in</a>}

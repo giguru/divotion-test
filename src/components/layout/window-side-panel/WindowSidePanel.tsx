@@ -6,7 +6,7 @@ function WindowSidePanel({ children, onClose }: PropsWithChildren<{ onClose: () 
     return (
         <div className={`${styles.WindowSidePanelContainer} d-flex justify-content-end`}>
             <div className={styles.Backdrop} onClick={onClose} />
-            <div className={`${styles.ContentContainer} bg-white shadow-lg position-absolute py-3 px-5`}>
+            <div className={`${styles.ContentContainer} bg-white shadow-lg position-absolute py-3 px-3 px-sm-5`}>
                 <div className="float-end">
                     <CloseButton onClick={onClose} />
                 </div>

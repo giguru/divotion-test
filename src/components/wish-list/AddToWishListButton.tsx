@@ -22,7 +22,7 @@ function AddToWishListButton({ productId }: AddToWishListButtonInterface) {
                 setValue(productIsSelected ? 'Removed' : 'Added!')
             }}
         >
-            {productIsSelected ? <Icons.FilledWishList size={30} /> : <Icons.EmptyWishList size={30} />}
+            {productIsSelected ? <Icons.FilledWishList className="text-primary" size={30} /> : <Icons.EmptyWishList size={30} />}
         </button>
     );
 }
