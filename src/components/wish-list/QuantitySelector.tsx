@@ -29,11 +29,11 @@ function QuantitySelector({ name }: { name: string }) {
     return (
         <>
             <InputGroup className="flex-grow-0">
-                <Button variant="outline-dark" onClick={decrease}>
+                <Button variant="outline-dark" className="px-1" onClick={decrease}>
                     <AiOutlineMinus size={20} />
                 </Button>
-                <Field name={name} className={`${styles.WishListRowInput} form-control`} />
-                <Button variant="outline-dark" onClick={increase}>
+                <Field name={name} className={`${styles.WishListRowInput} form-control px-0`} />
+                <Button variant="outline-dark" className="px-1" onClick={increase}>
                     <AiOutlinePlus size={20} />
                 </Button>
             </InputGroup>
