@@ -1,0 +1,23 @@
+
+
+.WindowSidePanelContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    .Backdrop {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .ContentContainer {
+        width: min(
+                600px,
+                95vw // Always show an edge to indicate being in a 'modalbox' like element
+        );
+        height: 100%;
+    }
+}
