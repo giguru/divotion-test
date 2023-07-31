@@ -1,4 +1,5 @@
 
+$animationSpeed: 300ms;
 
 .WindowSidePanelContainer {
     position: fixed;
@@ -11,6 +12,7 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.2);
+        animation: ease-in-out fadeIn $animationSpeed forwards;
     }
 
     .ContentContainer {
@@ -19,5 +21,29 @@
                 95vw // Always show an edge to indicate being in a 'modalbox' like element
         );
         height: 100%;
+        animation: ease-in-out slideInLeft $animationSpeed forwards;
+    }
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        right: -200px;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        right: 0;
     }
 }
