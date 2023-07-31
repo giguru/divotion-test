@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {CSSProperties, useMemo} from 'react';
 import {Formik} from 'formik';
 import {ProductModel} from '../../types/api-models';
 import {Alert, Button, Col, Row} from 'react-bootstrap';
@@ -11,9 +11,11 @@ interface WishListRowProps {
     product: ProductModel
     initQty: number
     setQuantity: (qty: number) => void
+    className?: string
+    style?: CSSProperties
 }
 
-function WishListRow({ product, initQty, setQuantity }: WishListRowProps) {
+function WishListRow({ product, initQty, setQuantity, className, style }: WishListRowProps) {
     const { value: feedback, setValue: setFeedback } = useDisappearingValue();
 
     const initValues = useMemo(() => {
@@ -21,10 +23,10 @@ function WishListRow({ product, initQty, setQuantity }: WishListRowProps) {
     }, [initQty]);
 
     return (
-        <Row key={product.id} className="p-2 bg-light mb-1">
+        <Row key={product.id} className={`p-2 bg-light mb-1 ${className}`} style={style}>
             <Col>
                 <div className="d-flex align-items-center gap-1">
-                    <Button variant="" className="text-danger" onClick={() => { setQuantity(0) }}>
+                    <Button variant="" className="text-danger ps-0 pe-1" onClick={() => { setQuantity(0) }}>
                         <FaTrash />
                     </Button>
                     <span>{product.name}</span>
@@ -49,7 +51,7 @@ function WishListRow({ product, initQty, setQuantity }: WishListRowProps) {
                     >
                         {WishListRowForm}
                     </Formik>
-                    {feedback && <Alert variant="success" className="py-2">{feedback}</Alert>}
+                    {feedback && <Alert variant="success" className="py-2 animated tada mb-0">{feedback}</Alert>}
                 </div>
             </Col>
         </Row>

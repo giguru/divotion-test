@@ -1,3 +1,4 @@
+@import "/src/App";
 
 $animationSpeed: 300ms;
 
@@ -7,6 +8,7 @@ $animationSpeed: 300ms;
     top: 0;
     width: 100vw;
     height: 100vh;
+    z-index: $zindex-offcanvas;
 
     .Backdrop {
         width: 100%;

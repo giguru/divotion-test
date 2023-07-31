@@ -16,7 +16,7 @@ function AddToWishListButton({ productId }: AddToWishListButtonInterface) {
 
     return (
         <button
-            className="bg-transparent border-0"
+            className={`bg-transparent border-0 animated ${productIsSelected ? 'tada': 'fadeIn'}`}
             onClick={() => {
                 setProduct(productId, productIsSelected ? 0 : 1);
                 setValue(productIsSelected ? 'Removed' : 'Added!')
