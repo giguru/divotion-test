@@ -1,5 +1,4 @@
-import React from 'react';
-import {ProductModel} from "../../types/api-models";
+import {ProductModel} from "../../api/api-models";
 import useLocalStorage, {LocalStorageKeys} from "../../api/useLocalStorage";
 
 export interface ProductListInterface {

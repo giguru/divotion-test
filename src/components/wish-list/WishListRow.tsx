@@ -1,10 +1,10 @@
 import React, {CSSProperties, useMemo} from 'react';
 import {Formik} from 'formik';
-import {ProductModel} from '../../types/api-models';
+import {ProductModel} from '../../api/api-models';
 import {Alert, Button, Col, Row} from 'react-bootstrap';
 import * as yup from 'yup';
 import {FaTrash} from 'react-icons/fa';
-import useDisappearingValue from "../local-disappearing-feedback/useDisappearingValue";
+import useDisappearingValue from "../layout/local-disappearing-feedback/useDisappearingValue";
 import WishListRowForm from "./WishListRowForm";
 
 interface WishListRowProps {

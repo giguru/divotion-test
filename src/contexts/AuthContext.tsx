@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, useContext} from 'react';
-import {UserModel} from "../types/api-models";
+import {UserModel} from "../api/api-models";
 
 const mockUser1: UserModel = {
     id: 'user-1',

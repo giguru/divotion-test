@@ -1,6 +1,5 @@
-import React from 'react';
 import productJson from './../data/products.json';
-import {ProductModel} from "../types/api-models";
+import {ProductModel} from "./api-models";
 
 // TODO implement react-query when backend is ready
 function useProductsIndex(): { products: Array<ProductModel> } {

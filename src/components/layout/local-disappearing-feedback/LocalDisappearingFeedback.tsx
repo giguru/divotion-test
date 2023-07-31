@@ -10,7 +10,7 @@ export function useLocalDisappearingFeedback() {
     return useContext(LocalDisappearFeedbackContext);
 }
 
-function LocalDisappearingFeedback<T>({ children }: PropsWithChildren<{}>) {
+function LocalDisappearingFeedback({ children }: PropsWithChildren<{}>) {
     const id = useId();
     const { value, setValue } = useDisappearingValue();
 

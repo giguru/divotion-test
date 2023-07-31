@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import AddToWishListButton from "../wish-list/AddToWishListButton";
 import useProductsIndex from "../../api/products";
-import LocalDisappearingFeedback from "../local-disappearing-feedback/LocalDisappearingFeedback";
+import LocalDisappearingFeedback from "../layout/local-disappearing-feedback/LocalDisappearingFeedback";
 import MockImage from "./MockImage";
 
 function ProductGrid() {
