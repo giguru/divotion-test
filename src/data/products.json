@@ -1,0 +1,27 @@
+[
+    {
+        "id": "uuid-1",
+        "name": "TV",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+    },
+    {
+        "id": "uuid-2",
+        "name": "Plant container",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+    },
+    {
+        "id": "uuid-3",
+        "name": "Plant feed",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+    },
+    {
+        "id": "uuid-4",
+        "name": "Rosemary plant",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+    },
+    {
+        "id": "uuid-5",
+        "name": "Tomato seedling",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+    }
+]
