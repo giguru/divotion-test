@@ -4,13 +4,15 @@ import AddToWishListButton from "../wish-list/AddToWishListButton";
 import useProductsIndex from "../../api/products";
 import LocalDisappearingFeedback from "../layout/local-disappearing-feedback/LocalDisappearingFeedback";
 import MockImage from "./MockImage";
+import Loading from "../layout/Loading";
 
 function ProductGrid() {
-    const { products } = useProductsIndex();
+    const { products, isLoading } = useProductsIndex();
 
     return (
         <Row>
-            {products.map(({ name, id, description }) => (
+            {isLoading && <Loading />}
+            {products?.map(({ name, id, description }) => (
                 <Col key={id} md={4} lg={3} sm={6} className="mb-4">
                     <div className="border border-1 rounded-2 p-2">
                         <MockImage />
