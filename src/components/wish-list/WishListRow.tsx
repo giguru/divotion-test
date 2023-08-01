@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import {FaTrash} from 'react-icons/fa';
 import useDisappearingValue from "../layout/local-disappearing-feedback/useDisappearingValue";
 import WishListRowForm from "./WishListRowForm";
+import {useConfirmation} from "../../contexts/ConfirmationModalContext";
 
 interface WishListRowProps {
     product: ProductModel
@@ -17,6 +18,7 @@ interface WishListRowProps {
 
 function WishListRow({ product, initQty, setQuantity, className, style }: WishListRowProps) {
     const { value: feedback, setValue: setFeedback } = useDisappearingValue();
+    const { confirm } = useConfirmation();
 
     const initValues = useMemo(() => {
         return { qty: `${initQty}` };
@@ -26,7 +28,19 @@ function WishListRow({ product, initQty, setQuantity, className, style }: WishLi
         <Row key={product.id} className={`p-2 bg-light mb-1 ${className}`} style={style}>
             <Col>
                 <div className="d-flex align-items-center gap-1">
-                    <Button variant="" className="text-danger ps-0 pe-1" onClick={() => { setQuantity(0) }}>
+                    <Button
+                        variant=""
+                        className="text-danger ps-0 pe-1"
+                        onClick={() => {
+                            confirm(`Are you sure you want to remove ${product.name}?`)
+                                .then(() => {
+                                    setQuantity(0);
+                                })
+                                .catch(() => {
+
+                                });
+                        }}
+                    >
                         <FaTrash />
                     </Button>
                     <span>{product.name}</span>

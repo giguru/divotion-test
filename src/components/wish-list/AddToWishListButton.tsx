@@ -3,6 +3,7 @@ import Icons from "../../libs/icons";
 import {useWishListContext} from "../../contexts/WishListContext";
 import {ProductModel} from "../../api/api-models";
 import {useLocalDisappearingFeedback} from "../layout/local-disappearing-feedback/LocalDisappearingFeedback";
+import {useConfirmation} from "../../contexts/ConfirmationModalContext";
 
 interface AddToWishListButtonInterface {
     productId: ProductModel['id']
@@ -11,6 +12,7 @@ interface AddToWishListButtonInterface {
 function AddToWishListButton({ productId }: AddToWishListButtonInterface) {
     const { setValue } = useLocalDisappearingFeedback();
     const { isSelected, setProduct } = useWishListContext();
+    const { confirm } = useConfirmation();
 
     const productIsSelected = isSelected(productId);
 
@@ -18,8 +20,20 @@ function AddToWishListButton({ productId }: AddToWishListButtonInterface) {
         <button
             className={`bg-transparent border-0 animated ${productIsSelected ? 'tada': 'fadeIn'}`}
             onClick={() => {
-                setProduct(productId, productIsSelected ? 0 : 1);
-                setValue(productIsSelected ? 'Removed' : 'Added!')
+                if (productIsSelected) {
+                    confirm(`Are you sure you want to remove this from your wishlist?`)
+                        .then(() => {
+                            setProduct(productId, 0);
+                            setValue('Removed');
+                        })
+                        .catch(() => {
+                            setProduct(productId, 0);
+                            setValue('Removed');
+                        })
+                } else {
+                    setProduct(productId, 1);
+                    setValue('Added');
+                }
             }}
         >
             {productIsSelected ? <Icons.FilledWishList className="text-primary" size={30} /> : <Icons.EmptyWishList size={30} />}
